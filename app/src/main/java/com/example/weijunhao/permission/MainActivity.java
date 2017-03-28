@@ -1,7 +1,9 @@
 package com.example.weijunhao.permission;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
@@ -27,9 +29,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initPermission();
+        //initPermission();
         initView();
         initListener();
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                ComponentName cn = new ComponentName("com.example.weijunhao.launchmode",
+                        "com.example.weijunhao.launchmode.MainActivity");
+                intent.setComponent(cn);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initListener() {
